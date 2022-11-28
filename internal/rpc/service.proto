@@ -1,7 +1,7 @@
 syntax = "proto3";
 
-package rpc;
-option go_package = "rpc";
+package service;
+option go_package = "../service";
 
 // CRUD operations to manage blocked IPs.
 service RPCService {
