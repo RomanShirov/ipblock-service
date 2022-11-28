@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+package rpc;
+option go_package = "rpc";
+
+// CRUD operations to manage blocked IPs.
+service RPCService {
+  // BlockIP creates an entry for a new blocked ip.
+  rpc BlockIP(BlockIPRequest) returns (BlockIPResponse);
+
+  // IsBlockedIP determines if ip is currently blocked from interacting with Twitch resources.
+  rpc IsBlockedIP(IsBlockedIPRequest) returns (IsBlockedIPResponse);
+
+  // UnblockIP deletes entry for ip currently being blocked.
+  rpc UnblockIP(UnblockIPRequest) returns (UnblockIPResponse);
+}
+
+message BlockIPRequest {
+  string ip = 1; // IP address to be blocked.
+  int32 duration = 2; // Duration in seconds for the ban to take effect.
+}
+
+message BlockIPResponse {
+  bool is_blocked = 1; // Returns whether or not the IP is currently blocked after the add operation.
+}
+
+message IsBlockedIPRequest {
+  string ip = 1; // IP address to be checked.
+}
+
+message IsBlockedIPResponse {
+  bool is_blocked = 1; // Whether or not the IP is currently blocked.
+}
+
+message UnblockIPRequest {
+  string ip = 1; // IP address to be removed from the block-list.
+}
+
+message UnblockIPResponse {
+  bool is_blocked = 1; // Returns whether or not the IP is currently blocked after the remove operation.
+}
