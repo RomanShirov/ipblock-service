@@ -7,7 +7,7 @@ import (
 
 func InitRedisConfig() *redis.Options {
 	return &redis.Options{
-		Addr:         "localhost:",
+		Addr:         "localhost:6379",
 		DialTimeout:  1 * time.Second,
 		ReadTimeout:  50 * time.Millisecond,
 		WriteTimeout: 300 * time.Millisecond,
