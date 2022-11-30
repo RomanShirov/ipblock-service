@@ -1,5 +1,11 @@
 version: '3'
 services:
+  service:
+    build:
+      dockerfile: Dockerfile
+      context: .
+    network_mode: "host"
+
   redis:
     image: redis:7.0.5-alpine
     restart: always
